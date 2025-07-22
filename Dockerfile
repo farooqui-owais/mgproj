@@ -1,6 +1,9 @@
 # Dockerfile for Magento PHP-FPM
 FROM php:8.2-fpm-alpine
 
+# Install bash (if not already present)
+RUN apt-get update && apt-get install -y bash --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
 # Install system dependencies and PHP extensions required by Magento
 RUN apk add --no-cache \
     nginx \
