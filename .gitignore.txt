@@ -1,0 +1,57 @@
+.DS_Store
+.idea/ # PhpStorm/IntelliJ IDEA
+.vscode/ # VS Code
+.buildpath
+.project
+.settings/
+.cache/
+.metadata/
+nbproject/
+atlassian*/
+ehthumbs.db
+Icon?
+Thumbs.db
+._*
+.Spotlight-V100
+.Trashes
+
+# Composer specific
+vendor/* # Most common approach: ignore vendor and run composer install on deploy
+
+# Magento generated directories and files
+generated/* # Compiled code (dependency injection, factories, proxies)
+var/*
+pub/static/*
+pub/media/*
+
+update/ # Magento update directory
+phpserver/ # Built-in PHP server directory (for dev)
+
+# Magento configuration files (sensitive or environment-specific)
+app/etc/env.php # Contains database credentials and other sensitive environment-specific settings
+app/etc/config.php # Contains module enable/disable status and theme configuration.
+                     # This can be either committed (if consistent across environments) or ignored.
+                     # For most team workflows, it's often tracked. If ignored, it means
+                     # you re-generate it or manually configure it per environment.
+                     # UNCOMMENT THE LINE BELOW TO IGNORE IT:
+# /app/etc/config.php
+
+app/etc/backup.php
+app/etc/config_sandbox # For specific sandbox configs
+
+
+# Testing-related files/directories
+dev/tests/tmp/
+dev/tests/functional/testsuite/Magento/
+dev/tests/functional/reports/
+dev/tests/api-functional/tmp/
+
+# Custom exceptions (add your own here)
+# For example, if you have custom modules/themes and want to include only those
+# while ignoring everything else, your approach to .gitignore might change significantly.
+# If you are only versioning your custom modules, you would ignore the entire Magento core
+# and only include app/code/YourCompany/YourModule.
+k8s-manifests-dev
+k8s-manifests
+auth-dev.json
+vendor/

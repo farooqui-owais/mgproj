@@ -1,0 +1,49 @@
+.DS_Store
+.idea/ # PhpStorm/IntelliJ IDEA
+.vscode/ # VS Code
+.buildpath
+.project
+.settings/
+.cache/
+.metadata/
+nbproject/
+atlassian*/
+ehthumbs.db
+Icon?
+Thumbs.db
+._*
+.Spotlight-V100
+.Trashes
+
+# Composer specific
+k8s-manifests-dev
+k8s-manifests
+auth-dev.json
+vendor/
+vendor/*
+# Magento generated directories and files
+generated/* 
+var/*
+pub/static/*
+pub/media/*
+
+update/ 
+phpserver/ 
+
+# Magento configuration files (sensitive or environment-specific)
+app/etc/env.php 
+app/etc/config.php 
+app/etc/backup.php
+app/etc/config_sandbox 
+
+# Testing-related files/directories
+dev/tests/tmp/
+dev/tests/functional/testsuite/Magento/
+dev/tests/functional/reports/
+dev/tests/api-functional/tmp/
+
+# Custom exceptions (add your own here)
+# For example, if you have custom modules/themes and want to include only those
+# while ignoring everything else, your approach to .gitignore might change significantly.
+# If you are only versioning your custom modules, you would ignore the entire Magento core
+# and only include app/code/YourCompany/YourModule.
