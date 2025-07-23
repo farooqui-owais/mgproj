@@ -15,7 +15,6 @@ WORKDIR /var/www/html
 # sodium is often not required unless explicitly used by a specific module
 RUN apk add --no-cache \
     bash \
-    nginx \
     git \
     unzip \
     curl \
@@ -30,25 +29,38 @@ RUN apk add --no-cache \
     libjpeg-turbo-dev \
     libpng-dev \
     mysql-client \
-    linux-headers \
-    libsodium-dev  \
+    libsodium-dev \
+    libxslt-dev \
+    zlib-dev \
+    libffi-dev \
+    tzdata \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) \
+        bcmath \
+        ctype \
+        curl \
+        dom \
+        exif \
+        fileinfo \
+        gd \
+        gmp \
+        iconv \
+        intl \
+        json \
+        mbstring \
+        opcache \
+        pcntl \
+        pdo \
         pdo_mysql \
+        simplexml \
         soap \
         sockets \
-        bcmath \
-        gd \
-        intl \
-        zip \
-        gmp \
-        exif \
-        pcntl \
-        opcache \
-        ftp \
         sodium \
-    # sodium is often not required; remove if not used by any module
-    # && docker-php-ext-install -j$(nproc) sodium \
+        tokenizer \
+        xsl \
+        zip \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
     && rm -rf /var/cache/apk/*
 
 # Install Composer
@@ -71,8 +83,7 @@ RUN if [ -n "$COMPOSER_AUTH_JSON" ] && [ "$COMPOSER_AUTH_JSON" != "{}" ]; then \
 # --optimize-autoloader is good
 # --ignore-platform-reqs can be used if you know platform requirements are met outside Composer's check
 # --prefer-dist for faster installs
-RUN composer update --no-dev --optimize-autoloader --prefer-dist --no-interaction && \
-    composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction
+RUN composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction
 # Set appropriate permissions
 # Ensure correct user and group, 'www-data' for Nginx/PHP-FPM
 # Directories need write permissions for the web server user
